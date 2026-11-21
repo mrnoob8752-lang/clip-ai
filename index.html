@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,191 +6,255 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
 <title>CLIP AI — Viral Clip Finder</title>
+
 <style>
-:root{color-scheme:dark;--bg:#0b1020;--panel:#141c30;--muted:#9aa8c2;--line:#293550;--accent:#8b7cff;--good:#35c98a}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#10172b,#080c17);color:#f4f6ff;font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-main{max-width:760px;margin:auto;padding:22px 15px 50px}.brand{font-size:27px;font-weight:850;letter-spacing:.5px}.brand span{color:var(--accent)}.sub{color:var(--muted);margin:4px 0 22px}
-.card{background:rgba(20,28,48,.96);border:1px solid var(--line);border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 10px 30px #0002}
-h2{font-size:17px;margin:0 0 13px}label{display:block;color:#c7d1e5;font-size:13px;margin:12px 0 6px}
-input,button{font:inherit}input[type=text],input[type=password],input[type=number]{width:100%;background:#0c1426;color:white;border:1px solid #34415e;border-radius:11px;padding:12px;outline:none}
-input:focus{border-color:var(--accent)}input[type=file]{width:100%;padding:11px;background:#0c1426;border:1px dashed #53617d;border-radius:11px;color:var(--muted)}
-.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
-button{border:0;border-radius:11px;padding:13px 16px;font-weight:750;cursor:pointer}
-.primary{background:linear-gradient(90deg,#7868ff,#a08cff);color:white;width:100%;margin-top:14px}
-.secondary{background:#25314b;color:#eaf0ff}.small{font-size:12px;color:var(--muted);line-height:1.5}
-.status{margin-top:12px;padding:11px;border-radius:10px;background:#0c1426;color:#c5d1e8;min-height:42px;white-space:pre-wrap;font-size:13px}
-.progress{height:7px;background:#26324a;border-radius:9px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:var(--good);transition:width .2s}
-.clip{padding:13px 0;border-top:1px solid var(--line)}.clip:first-child{border-top:0}.cliptop{display:flex;justify-content:space-between;gap:10px;align-items:center}.tag{font-size:11px;color:#bdb5ff;background:#302a55;padding:5px 8px;border-radius:20px}
-.clip p{margin:7px 0;color:#c2cce0;font-size:13px}.clip button{padding:9px 12px;font-size:13px}
-a{color:#b9afff}.hidden{display:none!important}
+:root{
+ color-scheme:dark;
+ --bg:#0b1020;
+ --panel:#141c30;
+ --muted:#9aa8c2;
+ --line:#293550;
+ --accent:#8b7cff;
+ --good:#35c98a;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:linear-gradient(145deg,#10172b,#080c17);
+ color:#f4f6ff;
+ font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif
+}
+main{max-width:760px;margin:auto;padding:22px 15px 50px}
+.brand{font-size:27px;font-weight:850;letter-spacing:.5px}
+.brand span{color:var(--accent)}
+.sub{color:var(--muted);margin:4px 0 22px}
+.card{
+ background:rgba(20,28,48,.96);
+ border:1px solid var(--line);
+ border-radius:18px;
+ padding:17px;
+ margin:13px 0;
+ box-shadow:0 10px 30px #0002
+}
+h2{font-size:17px;margin:0 0 13px}
+label{display:block;color:#c7d1e5;font-size:13px;margin:12px 0 6px}
+input,button{font:inherit}
+input[type=text]{
+ width:100%;background:#0c1426;color:white;
+ border:1px solid #34415e;border-radius:11px;
+ padding:12px;outline:none
+}
+input:focus{border-color:var(--accent)}
+input[type=file]{
+ width:100%;padding:11px;background:#0c1426;
+ border:1px dashed #53617d;border-radius:11px;color:var(--muted)
+}
+button{
+ border:0;border-radius:11px;padding:13px 16px;
+ font-weight:750;cursor:pointer
+}
+.primary{
+ background:linear-gradient(90deg,#7868ff,#a08cff);
+ color:white;width:100%;margin-top:14px
+}
+.primary:disabled{opacity:.5;cursor:not-allowed}
+.small{font-size:12px;color:var(--muted);line-height:1.5}
+.status{
+ margin-top:12px;padding:11px;border-radius:10px;
+ background:#0c1426;color:#c5d1e8;
+ min-height:42px;white-space:pre-wrap;font-size:13px
+}
+.progress{
+ height:7px;background:#26324a;border-radius:9px;
+ overflow:hidden;margin-top:10px
+}
+.bar{height:100%;width:0;background:var(--good);transition:width .2s}
+a{color:#b9afff}
 footer{color:#8290aa;text-align:center;font-size:12px;margin-top:22px}
 </style>
 </head>
+
 <body>
 <main>
-  <div class="brand">CLIP <span>AI</span></div>
-  <div class="sub">Find the moments worth sharing. Cut them. Download them.</div>
+ <div class="brand">CLIP <span>AI</span></div>
+ <div class="sub">Find the moments worth sharing. Cut them. Download them.</div>
 
-  <section class="card">
-    <h2>1. Add your Gemini API key</h2>
-    <label for="apiKey">Gemini API key (kept in this browser tab; don't share this page with your key)</label>
-    <input id="apiKey" type="password" placeholder="Paste your API key" autocomplete="off">
-    <div class="small">Get a key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. Free-tier availability and limits depend on your account, region and model. Never publish a page containing your personal key.</div>
-    <label for="model">Gemini model</label>
-    <input id="model" type="text" value="gemini-2.5-flash">
-  </section>
+ <section class="card">
+  <h2>1. Choose your video</h2>
 
-  <section class="card">
-    <h2>2. Choose a video</h2>
-    <label for="videoFile">Upload a video (recommended)</label>
-    <input id="videoFile" type="file" accept="video/mp4,video/webm,video/quicktime,video/x-m4v">
-    <label for="videoUrl">Or paste a direct video URL (.mp4, .webm, etc.)</label>
-    <input id="videoUrl" type="text" placeholder="https://example.com/video.mp4">
-    <div class="small">Direct links must allow browser CORS access and point to the actual video file. Social-media page links are not direct video files.</div>
-    <div class="row">
-      <div><label for="clipCount">Number of clips</label><input id="clipCount" type="number" min="1" max="8" value="5"></div>
-      <div><label for="clipLength">Target clip length (seconds)</label><input id="clipLength" type="number" min="10" max="90" value="35"></div>
-    </div>
-    <button id="go" class="primary">Find engaging clips</button>
-    <div class="progress"><div id="bar" class="bar"></div></div>
-    <div id="status" class="status">Ready. Choose a video and add your Gemini API key.</div>
-  </section>
+  <label for="videoFile">Upload a video</label>
+  <input id="videoFile" type="file"
+   accept="video/mp4,video/webm,video/quicktime,video/x-m4v,video/x-matroska,video/x-msvideo">
 
-  <section id="resultsCard" class="card hidden">
-    <h2>3. Best moments</h2>
-    <div id="results"></div>
-    <button id="cutAll" class="primary">Cut selected clips</button>
-    <div class="small">Video cutting happens on your device. Keep this page open while it processes.</div>
-  </section>
-  <footer>CLIP AI v1.0 · Browser-based prototype · Your video is processed locally for cutting.</footer>
+  <div class="small">
+   Supported: MP4, MOV, WEBM, MKV and AVI.<br>
+   Maximum file size: 50 MB. Maximum video duration: 3 minutes.
+  </div>
+
+  <label for="focus">What kind of clips do you want? (Optional)</label>
+  <input id="focus" type="text"
+   placeholder="Funny moments, important points, best hooks...">
+
+  <button id="go" class="primary">Find engaging clips</button>
+
+  <div class="progress"><div id="bar" class="bar"></div></div>
+  <div id="status" class="status">Ready. Choose a video to begin.</div>
+ </section>
+
+ <section class="card" id="resultsCard" hidden>
+  <h2>2. Your clips</h2>
+  <div id="results"></div>
+  <a id="download" hidden download="clip_ai_clips.zip">
+   Download your clips (ZIP)
+  </a>
+ </section>
+
+ <footer>
+  CLIP AI · Powered by Gemini · Video processing by our backend
+ </footer>
 </main>
 
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 <script>
-const $=id=>document.getElementById(id);
-let chosenFile=null, clips=[], ffmpeg=null, ffmpegReady=false;
-const setStatus=(s,p)=>{$('status').textContent=s;if(p!==undefined)$('bar').style.width=Math.max(0,Math.min(100,p))+'%'};
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function fmt(t){t=Math.max(0,Math.floor(Number(t)||0));return `${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`}
-function getDuration(file){return new Promise((resolve,reject)=>{const v=document.createElement('video');v.preload='metadata';v.onloadedmetadata=()=>{URL.revokeObjectURL(v.src);resolve(v.duration)};v.onerror=()=>reject(Error('Could not read video duration.'));v.src=URL.createObjectURL(file)})}
-async function getFile(){
-  const f=$('videoFile').files[0];
-  const url=$('videoUrl').value.trim();
-  if(f && url) throw Error('Choose an uploaded file OR a direct URL, not both.');
-  if(f)return f;
-  if(url){
-    setStatus('Downloading video from direct URL…',5);
-    const r=await fetch(url);
-    if(!r.ok)throw Error('Video download failed. The link may block access or require sign-in.');
-    const blob=await r.blob();
-    if(!blob.type.startsWith('video/') && !/\.(mp4|webm|mov|m4v)(\?|$)/i.test(url))throw Error('That URL does not look like a direct video file.');
-    return new File([blob],'clip-ai-source.mp4',{type:blob.type||'video/mp4'});
+const API_URL = "https://clip-ai-backend-jw5v.onrender.com/api/clip";
+
+const $ = id => document.getElementById(id);
+
+function setStatus(message, progress){
+ $("status").textContent = message;
+ if(progress !== undefined){
+  $("bar").style.width =
+   Math.max(0,Math.min(100,progress)) + "%";
+ }
+}
+
+function formatTime(seconds){
+ const s = Math.floor(seconds);
+ return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
+}
+
+function getDuration(file){
+ return new Promise((resolve,reject)=>{
+  const video = document.createElement("video");
+  const url = URL.createObjectURL(file);
+
+  video.preload = "metadata";
+
+  video.onloadedmetadata = ()=>{
+   const duration = video.duration;
+   URL.revokeObjectURL(url);
+   resolve(duration);
+  };
+
+  video.onerror = ()=>{
+   URL.revokeObjectURL(url);
+   reject(new Error("Could not read video. Please try another file."));
+  };
+
+  video.src = url;
+ });
+}
+
+async function readError(response){
+ try{
+  const data = await response.json();
+  return data.detail || "Something went wrong.";
+ }catch{
+  return "Server error. Please try again.";
+ }
+}
+
+$("go").addEventListener("click",async()=>{
+ const button = $("go");
+ const file = $("videoFile").files[0];
+ const focus = $("focus").value.trim();
+
+ $("resultsCard").hidden = true;
+ $("download").hidden = true;
+ $("results").textContent = "";
+ $("bar").style.width = "0%";
+
+ if(!file){
+  setStatus("Please choose a video first.",0);
+  return;
+ }
+
+ if(file.size > 50 * 1024 * 1024){
+  setStatus("File is too large. Maximum size is 50 MB.",0);
+  return;
+ }
+
+ button.disabled = true;
+
+ try{
+  setStatus("Checking video...",5);
+
+  const duration = await getDuration(file);
+
+  if(!Number.isFinite(duration) || duration <= 0){
+   throw new Error("Invalid video duration.");
   }
-  throw Error('Please upload a video or paste a direct video URL.');
-}
-async function uploadToGemini(file,key){
-  const base='https://generativelanguage.googleapis.com/upload/v1beta/files?key='+encodeURIComponent(key);
-  setStatus('Uploading video to Gemini…',12);
-  const start=await fetch(base,{method:'POST',headers:{
-    'X-Goog-Upload-Protocol':'resumable','X-Goog-Upload-Command':'start',
-    'X-Goog-Upload-Header-Content-Length':String(file.size),
-    'X-Goog-Upload-Header-Content-Type':file.type||'video/mp4',
-    'Content-Type':'application/json'
-  },body:JSON.stringify({file:{display_name:file.name}})});
-  if(!start.ok)throw Error('Gemini upload start failed: '+await start.text());
-  const uploadUrl=start.headers.get('x-goog-upload-url');
-  if(!uploadUrl)throw Error('Gemini upload URL was not returned by the browser. Try again or use another browser.');
-  const sent=await fetch(uploadUrl,{method:'POST',headers:{
-    'X-Goog-Upload-Offset':'0','X-Goog-Upload-Command':'upload, finalize',
-    'Content-Type':file.type||'video/mp4'
-  },body:file});
-  if(!sent.ok)throw Error('Video upload failed: '+await sent.text());
-  const data=await sent.json();
-  return data.file||data;
-}
-async function waitForFile(name,key){
-  for(let i=0;i<60;i++){
-    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/'+name+'?key='+encodeURIComponent(key));
-    if(!r.ok)throw Error('Could not check Gemini file status: '+await r.text());
-    const d=await r.json(),state=d.state||'ACTIVE';
-    setStatus('Gemini is processing the video… '+state,25+Math.min(25,i));
-    if(state==='ACTIVE')return d;
-    if(state==='FAILED')throw Error('Gemini could not process this video.');
-    await new Promise(res=>setTimeout(res,4000));
+
+  if(duration > 180){
+   throw new Error("Video is longer than 3 minutes. Please choose a shorter video.");
   }
-  throw Error('Video processing took too long. Try a shorter or smaller video.');
-}
-function extractJson(text){
-  let s=text.trim().replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();
-  const a=s.indexOf('{'),b=s.lastIndexOf('}');
-  if(a>=0&&b>a)s=s.slice(a,b+1);
-  return JSON.parse(s);
-}
-async function analyze(file,key,duration){
-  const uploaded=await uploadToGemini(file,key);
-  if(!uploaded.name||!uploaded.uri)throw Error('Gemini did not return a usable video file.');
-  const ready=await waitForFile(uploaded.name,key);
-  setStatus('Finding the strongest moments…',58);
-  const model=$('model').value.trim()||'gemini-2.5-flash';
-  const prompt=`Analyze this entire video and find up to ${$('clipCount').value} engaging short-form clips. Video duration is ${duration.toFixed(1)} seconds. Target each clip around ${$('clipLength').value} seconds, but use a shorter or longer duration if the moment needs it. Choose moments with a strong hook, surprising insight, funny/emotional moment, useful takeaway, or compelling story. Avoid dead air and incomplete sentences. Return ONLY valid JSON in this exact format: {"clips":[{"start":12.5,"end":48.0,"title":"Short title","reason":"Why viewers may keep watching","hook":"Opening hook"}]}. Timestamps must be seconds, within the video duration, end greater than start, and clips should not overlap. Do not invent moments.`;
-  const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`,{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({contents:[{parts:[{file_data:{mime_type:ready.mimeType||file.type||'video/mp4',file_uri:ready.uri}},{text:prompt}]}],generationConfig:{temperature:0.3,response_mime_type:'application/json'}})
+
+  if(duration < 2){
+   throw new Error("Video must be at least 2 seconds long.");
+  }
+
+  const formData = new FormData();
+  formData.append("file",file);
+
+  if(focus){
+   formData.append("focus",focus);
+  }
+
+  setStatus("Connecting to CLIP AI server...",15);
+
+  const response = await fetch(API_URL,{
+   method:"POST",
+   body:formData
   });
-  if(!r.ok)throw Error('Gemini analysis failed: '+await r.text());
-  const data=await r.json();
-  const txt=data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
-  const parsed=extractJson(txt);
-  clips=(parsed.clips||[]).map((c,i)=>({id:i,start:Math.max(0,Number(c.start)),end:Math.min(duration,Number(c.end)),title:c.title||`Clip ${i+1}`,reason:c.reason||'',hook:c.hook||'',selected:true,blob:null})).filter(c=>Number.isFinite(c.start)&&Number.isFinite(c.end)&&c.end>c.start&&c.start<duration);
-  if(!clips.length)throw Error('Gemini returned no valid clips. Try another video or model.');
-}
-function renderClips(){
-  $('results').innerHTML=clips.map((c,i)=>`<div class="clip"><div class="cliptop"><strong>${i+1}. ${esc(c.title)}</strong><span class="tag">${fmt(c.end-c.start)} · ${fmt(c.start)}–${fmt(c.end)}</span></div><p>${esc(c.reason)}</p><p><b>Hook:</b> ${esc(c.hook)}</p><label><input type="checkbox" data-clip="${i}" ${c.selected?'checked':''} style="width:auto;accent-color:#8b7cff"> Select this clip</label><div id="download-${i}"></div></div>`).join('');
-  $('results').querySelectorAll('[data-clip]').forEach(el=>el.addEventListener('change',()=>clips[Number(el.dataset.clip)].selected=el.checked));
-}
-async function loadFFmpeg(){
-  if(ffmpegReady)return;
-  if(!window.FFmpeg||!window.FFmpeg.createFFmpeg)throw Error('FFmpeg library did not load. Check your internet connection and refresh.');
-  setStatus('Loading video cutter (first load may take a minute)…',65);
-  ffmpeg=window.FFmpeg.createFFmpeg({log:false,corePath:'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'});
-  await ffmpeg.load();ffmpegReady=true;
-}
-async function cutSelected(){
-  const selected=clips.filter(c=>c.selected);
-  if(!selected.length)throw Error('Select at least one clip.');
-  await loadFFmpeg();
-  const file=chosenFile;
-  ffmpeg.FS('writeFile','source.mp4',await window.FFmpeg.fetchFile(file));
-  for(let i=0;i<selected.length;i++){
-    const c=selected[i],name=`clip-${i+1}.mp4`;
-    setStatus(`Cutting clip ${i+1} of ${selected.length}…`,70+(i/selected.length)*25);
-    try{ffmpeg.FS('unlink',name)}catch(e){}
-    await ffmpeg.run('-ss',String(c.start),'-i','source.mp4','-t',String(c.end-c.start),'-c:v','libx264','-preset','ultrafast','-crf','28','-c:a','aac','-b:a','96k','-movflags','+faststart',name);
-    const bytes=ffmpeg.FS('readFile',name);
-    c.blob=new Blob([bytes.buffer],{type:'video/mp4'});
-    const link=document.createElement('a');link.href=URL.createObjectURL(c.blob);link.download=name;link.textContent='Download '+name;link.className='small';
-    $('download-'+c.id).replaceChildren(link);
+
+  if(!response.ok){
+   throw new Error(await readError(response));
   }
-  setStatus('Finished! Your clips are ready to download.',100);
-}
-$('go').addEventListener('click',async()=>{
-  $('go').disabled=true;$('resultsCard').classList.add('hidden');clips=[];
-  try{
-    const key=$('apiKey').value.trim();if(!key)throw Error('Paste your Gemini API key first.');
-    chosenFile=await getFile();
-    if(chosenFile.size>2*1024*1024*1024)throw Error('This prototype limits uploads to 2 GB. Use a smaller file.');
-    const duration=await getDuration(chosenFile);
-    if(!Number.isFinite(duration)||duration<5)throw Error('Video is too short or its duration could not be read.');
-    if(duration>3600)throw Error('For this first version, use videos up to 60 minutes.');
-    await analyze(chosenFile,key,duration);
-    renderClips();$('resultsCard').classList.remove('hidden');setStatus(`Found ${clips.length} possible clips. Select the ones you want and cut them.`,65);
-  }catch(e){setStatus('Error: '+(e.message||String(e)),0)}
-  finally{$('go').disabled=false}
-});
-$('cutAll').addEventListener('click',async()=>{
-  $('cutAll').disabled=true;
-  try{await cutSelected()}catch(e){setStatus('Cutting error: '+(e.message||String(e)),0)}
-  finally{$('cutAll').disabled=false}
+
+  setStatus("AI is analyzing your video and creating clips...",65);
+
+  const blob = await response.blob();
+
+  if(blob.size === 0){
+   throw new Error("The server returned an empty file.");
+  }
+
+  if(!blob.type.includes("zip")){
+   throw new Error("Unexpected server response. Please try again.");
+  }
+
+  const zipUrl = URL.createObjectURL(blob);
+  const download = $("download");
+
+  download.href = zipUrl;
+  download.hidden = false;
+
+  const count = response.headers.get("X-Clip-Count");
+
+  $("results").textContent =
+   "Successfully created " + (count || "your") +
+   " video clips. Your ZIP file is ready.";
+
+  $("resultsCard").hidden = false;
+
+  setStatus("Finished! Your clips are ready.",100);
+
+  download.click();
+
+ }catch(error){
+  setStatus("Error: " + (error.message || "Please try again."),0);
+ }finally{
+  button.disabled = false;
+ }
 });
 </script>
 </body>
