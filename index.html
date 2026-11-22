@@ -1,259 +1,134 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b25">
 <title>CLIP AI — Viral Clip Finder</title>
-
 <style>
-:root{
- color-scheme:dark;
- --bg:#0b1020;
- --panel:#141c30;
- --muted:#9aa8c2;
- --line:#293550;
- --accent:#8b7cff;
- --good:#35c98a;
-}
 *{box-sizing:border-box}
-body{
- margin:0;
- background:linear-gradient(145deg,#10172b,#080c17);
- color:#f4f6ff;
- font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif
-}
-main{max-width:760px;margin:auto;padding:22px 15px 50px}
-.brand{font-size:27px;font-weight:850;letter-spacing:.5px}
-.brand span{color:var(--accent)}
-.sub{color:var(--muted);margin:4px 0 22px}
-.card{
- background:rgba(20,28,48,.96);
- border:1px solid var(--line);
- border-radius:18px;
- padding:17px;
- margin:13px 0;
- box-shadow:0 10px 30px #0002
-}
-h2{font-size:17px;margin:0 0 13px}
-label{display:block;color:#c7d1e5;font-size:13px;margin:12px 0 6px}
-input,button{font:inherit}
-input[type=text]{
- width:100%;background:#0c1426;color:white;
- border:1px solid #34415e;border-radius:11px;
- padding:12px;outline:none
-}
-input:focus{border-color:var(--accent)}
-input[type=file]{
- width:100%;padding:11px;background:#0c1426;
- border:1px dashed #53617d;border-radius:11px;color:var(--muted)
-}
-button{
- border:0;border-radius:11px;padding:13px 16px;
- font-weight:750;cursor:pointer
-}
-.primary{
- background:linear-gradient(90deg,#7868ff,#a08cff);
- color:white;width:100%;margin-top:14px
-}
-.primary:disabled{opacity:.5;cursor:not-allowed}
-.small{font-size:12px;color:var(--muted);line-height:1.5}
-.status{
- margin-top:12px;padding:11px;border-radius:10px;
- background:#0c1426;color:#c5d1e8;
- min-height:42px;white-space:pre-wrap;font-size:13px
-}
-.progress{
- height:7px;background:#26324a;border-radius:9px;
- overflow:hidden;margin-top:10px
-}
-.bar{height:100%;width:0;background:var(--good);transition:width .2s}
-a{color:#b9afff}
-footer{color:#8290aa;text-align:center;font-size:12px;margin-top:22px}
+body{margin:0;background:#100b25;color:#fff;font-family:Arial,sans-serif;padding:24px 16px}
+main{max-width:520px;margin:30px auto}
+header{text-align:center;margin-bottom:28px}
+.logo{font-size:36px;font-weight:900;color:#b99aff;letter-spacing:2px}
+header p{color:#aaa;margin-top:8px}
+.panel{background:#1c1535;border:1px solid #39285e;border-radius:18px;padding:22px}
+h2{font-size:19px;margin:0 0 18px}
+label{display:block;font-size:14px;color:#ddd;margin:18px 0 8px}
+input,textarea{width:100%;padding:14px;border-radius:10px;border:1px solid #49376e;background:#100b25;color:white;font-size:15px}
+input[type=file]{padding:12px}
+button{width:100%;border:0;border-radius:11px;padding:16px;background:#8955ed;color:white;font-size:16px;font-weight:bold;margin-top:20px}
+button:disabled{opacity:.5}
+.note{font-size:12px;color:#aaa;line-height:1.6;margin-top:10px}
+.status{margin-top:18px;text-align:center;line-height:1.5;color:#c9b6ff;white-space:pre-wrap}
+footer{text-align:center;color:#777;font-size:12px;margin-top:22px}
 </style>
 </head>
-
 <body>
 <main>
- <div class="brand">CLIP <span>AI</span></div>
- <div class="sub">Find the moments worth sharing. Cut them. Download them.</div>
+<header>
+<div class="logo">CLIP AI</div>
+<p>Find the best moments. Create viral clips.</p>
+</header>
 
- <section class="card">
-  <h2>1. Choose your video</h2>
+<section class="panel">
+<h2>Choose your video</h2>
 
-  <label for="videoFile">Upload a video</label>
-  <input id="videoFile" type="file"
-   accept="video/mp4,video/webm,video/quicktime,video/x-m4v,video/x-matroska,video/x-msvideo">
+<label for="video">Upload video</label>
+<input id="video" type="file" accept="video/*">
 
-  <div class="small">
-   Supported: MP4, MOV, WEBM, MKV and AVI.<br>
-   Maximum file size: 50 MB. Maximum video duration: 3 minutes.
-  </div>
+<div style="text-align:center;color:#aaa;margin:17px">— OR PASTE VIDEO LINK —</div>
 
-  <label for="focus">What kind of clips do you want? (Optional)</label>
-  <input id="focus" type="text"
-   placeholder="Funny moments, important points, best hooks...">
+<label for="url">YouTube / Instagram Reel / MP4 link</label>
+<input id="url" type="url" placeholder="Paste your video link here">
 
-  <button id="go" class="primary">Find engaging clips</button>
+<label for="focus">What moments should we find? (Optional)</label>
+<textarea id="focus" rows="3" placeholder="Funny moments, highlights, important points..."></textarea>
 
-  <div class="progress"><div id="bar" class="bar"></div></div>
-  <div id="status" class="status">Ready. Choose a video to begin.</div>
- </section>
+<button id="start">Find Viral Clips</button>
+<div class="note">Maximum upload: 50 MB. Video duration: up to 180 seconds. Only publicly accessible links are supported. Private or login-required videos may not work.</div>
+<div class="status" id="status"></div>
+</section>
 
- <section class="card" id="resultsCard" hidden>
-  <h2>2. Your clips</h2>
-  <div id="results"></div>
-  <a id="download" hidden download="clip_ai_clips.zip">
-   Download your clips (ZIP)
-  </a>
- </section>
-
- <footer>
-  CLIP AI · Powered by Gemini · Video processing by our backend
- </footer>
+<footer>CLIP AI · AI-powered video highlights</footer>
 </main>
 
 <script>
-const API_URL = "https://clip-ai-backend-jw5v.onrender.com/api/clip";
+const API="https://clip-ai-backend-jw5v.onrender.com/api/clip";
+const video=document.getElementById("video");
+const url=document.getElementById("url");
+const focus=document.getElementById("focus");
+const button=document.getElementById("start");
+const status=document.getElementById("status");
 
-const $ = id => document.getElementById(id);
+button.addEventListener("click",async()=>{
+ const file=video.files[0];
+ const link=url.value.trim();
 
-function setStatus(message, progress){
- $("status").textContent = message;
- if(progress !== undefined){
-  $("bar").style.width =
-   Math.max(0,Math.min(100,progress)) + "%";
- }
-}
-
-function formatTime(seconds){
- const s = Math.floor(seconds);
- return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
-}
-
-function getDuration(file){
- return new Promise((resolve,reject)=>{
-  const video = document.createElement("video");
-  const url = URL.createObjectURL(file);
-
-  video.preload = "metadata";
-
-  video.onloadedmetadata = ()=>{
-   const duration = video.duration;
-   URL.revokeObjectURL(url);
-   resolve(duration);
-  };
-
-  video.onerror = ()=>{
-   URL.revokeObjectURL(url);
-   reject(new Error("Could not read video. Please try another file."));
-  };
-
-  video.src = url;
- });
-}
-
-async function readError(response){
- try{
-  const data = await response.json();
-  return data.detail || "Something went wrong.";
- }catch{
-  return "Server error. Please try again.";
- }
-}
-
-$("go").addEventListener("click",async()=>{
- const button = $("go");
- const file = $("videoFile").files[0];
- const focus = $("focus").value.trim();
-
- $("resultsCard").hidden = true;
- $("download").hidden = true;
- $("results").textContent = "";
- $("bar").style.width = "0%";
-
- if(!file){
-  setStatus("Please choose a video first.",0);
+ if(!file&&!link){
+  status.textContent="Please upload a video or paste a link.";
   return;
  }
-
- if(file.size > 50 * 1024 * 1024){
-  setStatus("File is too large. Maximum size is 50 MB.",0);
+ if(file&&link){
+  status.textContent="Choose either an uploaded video or a link, not both.";
   return;
  }
+ if(file&&file.size>50*1024*1024){
+  status.textContent="Video is larger than 50 MB.";
+  return;
+ }
+ if(link){
+  try{
+   const parsed=new URL(link);
+   if(parsed.protocol!=="https:"){
+    status.textContent="Please use a valid HTTPS link.";
+    return;
+   }
+  }catch{
+   status.textContent="Please enter a valid video link.";
+   return;
+  }
+ }
 
- button.disabled = true;
+ const data=new FormData();
+ if(file)data.append("file",file);
+ if(link)data.append("url",link);
+ if(focus.value.trim())data.append("focus",focus.value.trim());
+
+ button.disabled=true;
+ status.textContent="Processing your video. Please wait...";
 
  try{
-  setStatus("Checking video...",5);
-
-  const duration = await getDuration(file);
-
-  if(!Number.isFinite(duration) || duration <= 0){
-   throw new Error("Invalid video duration.");
-  }
-
-  if(duration > 180){
-   throw new Error("Video is longer than 3 minutes. Please choose a shorter video.");
-  }
-
-  if(duration < 2){
-   throw new Error("Video must be at least 2 seconds long.");
-  }
-
-  const formData = new FormData();
-  formData.append("file",file);
-
-  if(focus){
-   formData.append("focus",focus);
-  }
-
-  setStatus("Connecting to CLIP AI server...",15);
-
-  const response = await fetch(API_URL,{
-   method:"POST",
-   body:formData
-  });
-
+  const response=await fetch(API,{method:"POST",body:data});
   if(!response.ok){
-   throw new Error(await readError(response));
+   let message="Request failed ("+response.status+").";
+   try{
+    const error=await response.json();
+    message=error.detail||message;
+   }catch{}
+   throw new Error(message);
   }
 
-  setStatus("AI is analyzing your video and creating clips...",65);
+  const blob=await response.blob();
+  if(!blob.size)throw new Error("The server returned an empty file.");
 
-  const blob = await response.blob();
+  const downloadUrl=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=downloadUrl;
+  a.download="CLIP_AI_Highlights.zip";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(downloadUrl),60000);
 
-  if(blob.size === 0){
-   throw new Error("The server returned an empty file.");
-  }
-
-  if(!blob.type.includes("zip")){
-   throw new Error("Unexpected server response. Please try again.");
-  }
-
-  const zipUrl = URL.createObjectURL(blob);
-  const download = $("download");
-
-  download.href = zipUrl;
-  download.hidden = false;
-
-  const count = response.headers.get("X-Clip-Count");
-
-  $("results").textContent =
-   "Successfully created " + (count || "your") +
-   " video clips. Your ZIP file is ready.";
-
-  $("resultsCard").hidden = false;
-
-  setStatus("Finished! Your clips are ready.",100);
-
-  download.click();
-
+  const count=response.headers.get("X-Clip-Count");
+  status.textContent="Done! Your ZIP download has started."+
+   (count?" Found "+count+" clips.":"");
  }catch(error){
-  setStatus("Error: " + (error.message || "Please try again."),0);
+  status.textContent="Error: "+error.message;
  }finally{
-  button.disabled = false;
+  button.disabled=false;
  }
 });
 </script>
